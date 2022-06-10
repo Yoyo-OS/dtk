@@ -21,7 +21,8 @@
 #include "dguiapplicationhelper.h"
 #include "private/dguiapplicationhelper_p.h"
 #include "dplatformhandle.h"
-
+#include <QDBusServiceWatcher>
+#include <QDBusInterface>
 #include <QHash>
 #include <QColor>
 #include <QPalette>
@@ -302,6 +303,23 @@ void DGuiApplicationHelperPrivate::init()
     systemTheme = new DPlatformTheme(0, q);
     // 初始时先将appTheme指定为systtemTheme，在后面合适的地方再初始化appTheme
     appTheme = systemTheme;
+
+    // 适配Yoyo OS
+    QDBusServiceWatcher *serviceWatcher = new QDBusServiceWatcher(Service, QDBusConnection::sessionBus(),
+                                                                  QDBusServiceWatcher::WatchForRegistration);
+    connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [=] {
+        QDBusInterface iface(Service, ObjectPath, Interface, QDBusConnection::sessionBus(), this);
+
+        if (iface.isValid()) {
+            if(iface.property("isDarkMode").toBool())
+            {
+                setThemeType(DGuiApplicationHelper::DarkType);
+            }else{
+                setThemeType(DGuiApplicationHelper::LightType);
+            }
+        }
+    });
+
 
     if (qGuiApp) {
         initApplication(qGuiApp);
