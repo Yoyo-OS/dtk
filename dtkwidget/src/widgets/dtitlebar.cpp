@@ -57,7 +57,7 @@ DWIDGET_BEGIN_NAMESPACE
 #define CHANGESPLITWINDOW_VAR "_d_splitWindowOnScreen"
 #define GETSUPPORTSPLITWINDOW_VAR "_d_supportForSplittingWindow"
 
-const int DefaultTitlebarHeight = 50;
+const int DefaultTitlebarHeight = 40;
 //const int DefaultIconHeight = 32;
 //const int DefaultIconWidth = 32;
 
