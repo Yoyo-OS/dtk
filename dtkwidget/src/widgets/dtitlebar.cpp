@@ -58,8 +58,8 @@ DWIDGET_BEGIN_NAMESPACE
 #define GETSUPPORTSPLITWINDOW_VAR "_d_supportForSplittingWindow"
 
 const int DefaultTitlebarHeight = 50;
-const int DefaultIconHeight = 32;
-const int DefaultIconWidth = 32;
+//const int DefaultIconHeight = 32;
+//const int DefaultIconWidth = 32;
 
 class DTitlebarPrivate : public DTK_CORE_NAMESPACE::DObjectPrivate
 {
@@ -413,12 +413,6 @@ void DTitlebarPrivate::init()
     closeButton->setIconSize(QSize(DefaultTitlebarHeight, DefaultTitlebarHeight));
 
 
-    iconLabel->setIconSize(QSize(DefaultIconWidth, DefaultIconHeight));
-    iconLabel->setWindowFlags(Qt::WindowTransparentForInput);
-    iconLabel->setAttribute( Qt::WA_TransparentForMouseEvents, true);
-    iconLabel->setFocusPolicy(Qt::NoFocus);
-    iconLabel->setAccessibleName("DTitlebarIconLabel");
-    iconLabel->setFlat(true);
     // 默认无图标，所以隐藏
     iconLabel->hide();
 
@@ -499,7 +493,7 @@ void DTitlebarPrivate::init()
     q->connect(DWindowManagerHelper::instance(), SIGNAL(windowMotifWMHintsChanged(quint32)),
                q, SLOT(_q_onTopWindowMotifHintsChanged(quint32)));
     q->connect(DGuiApplicationHelper::instance()->systemTheme(), &DPlatformTheme::iconThemeNameChanged, q, [ = ]() {
-        iconLabel->update();
+        //iconLabel->update();
     });
     q->connect(maxButtonPressAndHoldTimer, &QTimer::timeout, q, [this]() {
         showSplitScreenWidget();
@@ -899,19 +893,7 @@ void DTitlebarPrivate::_q_switchThemeActionTriggered(QAction *action)
 
 void DTitlebarPrivate::setIconVisible(bool visible)
 {
-    if (iconLabel->isVisible() == visible)
-        return;
-
-    if (visible) {
-        leftLayout->insertSpacing(0, 10);
-        leftLayout->insertWidget(1, iconLabel, 0, Qt::AlignLeading | Qt::AlignVCenter);
-        iconLabel->show();
-    } else {
-        iconLabel->hide();
-        // 从布局中移除图标相关的东西
-        delete leftLayout->takeAt(0);
-        delete leftLayout->takeAt(1);
-    }
+    return;
 }
 
 void DTitlebarPrivate::updateTabOrder()
@@ -1526,14 +1508,7 @@ void DTitlebar::setTitle(const QString &title)
  */
 void DTitlebar::setIcon(const QIcon &icon)
 {
-    D_D(DTitlebar);
-    if (!d->embedMode) {
-        d->iconLabel->setIcon(icon);
-        d->setIconVisible(!icon.isNull());
-    } else if (parentWidget()) {
-        d->setIconVisible(false);
-        parentWidget()->setWindowIcon(icon);
-    }
+    return;
 }
 
 void DTitlebar::toggleWindowState()
