@@ -594,13 +594,6 @@ static DPlatformTheme *appTheme()
 QVariant QDeepinTheme::themeHint(QPlatformTheme::ThemeHint hint) const
 {
     switch (hint) {
-    case QPlatformTheme::StyleNames: {
-        return QStringList({"chameleon", "fusion"});
-    }
-    case QPlatformTheme::SystemIconThemeName:
-        return appTheme()->iconThemeName();
-    case QPlatformTheme::SystemIconFallbackThemeName:
-        return "bloom";
     case QPlatformTheme::IconThemeSearchPaths:
         return QVariant(QGenericUnixTheme::xdgIconThemePaths() << QDir::homePath() + "/.local/share/icons");
     case UseFullScreenForPopupMenu:
