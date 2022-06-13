@@ -44,6 +44,8 @@ QPlatformIntegration* DPlatformIntegrationPlugin::create(const QString& system, 
         loadDXcb = true;
     } else if (QString(qgetenv("XDG_CURRENT_DESKTOP")).toLower().startsWith("deepin")) {
         loadDXcb = true;
+    } else if (QString(qgetenv("XDG_CURRENT_DESKTOP")).toLower().startsWith("yoyo")) {
+        loadDXcb = true;
     }
 
     return loadDXcb ? new DPlatformIntegration(parameters, argc, argv)
