@@ -1,3 +1,9 @@
+dde-qt-dbus-factory (5.4.5-1) unstable; urgency=medium
+
+  * update
+
+ -- Deepin Packages Builder <packages@deepin.com>  Sat, 20 Mar 2021 14:31:09 +0800
+
 dde-qt-dbus-factory (0.4.2-2) unstable; urgency=medium
 
   * Refresh symbols using build's buildlog.
