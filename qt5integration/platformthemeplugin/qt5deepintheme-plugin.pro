@@ -45,12 +45,14 @@ SOURCES += qdeepintheme.cpp \
     qdeepinfiledialoghelper.cpp \
     diconproxyengine.cpp \
     dthemesettings.cpp \
+    hintsettings.cpp \
     xdgiconenginecreator.cpp
 
 HEADERS += qdeepintheme.h \
     qdeepinfiledialoghelper.h \
     diconproxyengine.h \
     dthemesettings.h \
+    hintsettings.h \
     xdgiconenginecreator.h
 
 DISTFILES += \

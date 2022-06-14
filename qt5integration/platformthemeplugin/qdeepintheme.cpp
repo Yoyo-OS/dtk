@@ -606,11 +606,11 @@ QVariant QDeepinTheme::themeHint(QPlatformTheme::ThemeHint hint) const
     default:
         break;
     }
-    QVariant hint = m_hints->hint(hintType);
-    if (hint.isValid()) {
-        return hint;
+    QVariant m_hint = m_hints->hint(hintType);
+    if (m_hint.isValid()) {
+        return m_hint;
     } else {
-        return QPlatformTheme::themeHint(hintType);
+        return QPlatformTheme::themeHint(hint);
     }
 }
 
