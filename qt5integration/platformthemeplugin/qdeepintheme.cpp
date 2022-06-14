@@ -438,7 +438,7 @@ QDeepinTheme::QDeepinTheme()
     DEEPIN_QT_THEME::setFollowColorScheme = XdgIcon::setFollowColorScheme;
     DEEPIN_QT_THEME::followColorScheme = XdgIcon::followColorScheme;
 #endif
-
+    m_hints = new HintsSettings(this);
     if (enabledRTScreenScale()) {
         QScopedPointer<DThemeSettings> setting(new DThemeSettings(false));
         // 程序启动时初始设置屏幕缩放比
@@ -595,12 +595,8 @@ QVariant QDeepinTheme::themeHint(QPlatformTheme::ThemeHint hint) const
 {
     switch (hint) {
     case QPlatformTheme::StyleNames: {
-        return QStringList({"chameleon", "fusion"});
+        return QStringList({"chameleon", "fusion","yoyo"});
     }
-    case QPlatformTheme::SystemIconThemeName:
-        return appTheme()->iconThemeName();
-    case QPlatformTheme::SystemIconFallbackThemeName:
-        return "bloom";
     case QPlatformTheme::IconThemeSearchPaths:
         return QVariant(QGenericUnixTheme::xdgIconThemePaths() << QDir::homePath() + "/.local/share/icons");
     case UseFullScreenForPopupMenu:
@@ -610,8 +606,12 @@ QVariant QDeepinTheme::themeHint(QPlatformTheme::ThemeHint hint) const
     default:
         break;
     }
-
-    return QGenericUnixTheme::themeHint(hint);
+    QVariant hint = m_hints->hint(hintType);
+    if (hint.isValid()) {
+        return hint;
+    } else {
+        return QPlatformTheme::themeHint(hintType);
+    }
 }
 
 const QPalette *QDeepinTheme::palette(QPlatformTheme::Palette type) const

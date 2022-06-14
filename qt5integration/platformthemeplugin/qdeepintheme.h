@@ -19,7 +19,7 @@
 #define QDEEPINTHEME_H
 
 #include <QMimeDatabase>
-
+#include "hintsettings.h"
 #include <private/qgenericunixthemes_p.h>
 #include <qpa/qplatformwindow.h>
 #include <qpa/qplatformnativeinterface.h>
@@ -56,7 +56,7 @@ private:
     static bool m_usePlatformNativeDialog;
     static QMimeDatabase m_mimeDatabase;
     static DThemeSettings *m_settings;
-
+    HintsSettings *m_hints;
     friend class QDeepinFileDialogHelper;
     friend class QDeepinPlatformMenu;
 };
