@@ -438,7 +438,7 @@ QDeepinTheme::QDeepinTheme()
     DEEPIN_QT_THEME::setFollowColorScheme = XdgIcon::setFollowColorScheme;
     DEEPIN_QT_THEME::followColorScheme = XdgIcon::followColorScheme;
 #endif
-    m_hints = new HintsSettings(this);
+    m_hints = new HintsSettings();
     if (enabledRTScreenScale()) {
         QScopedPointer<DThemeSettings> setting(new DThemeSettings(false));
         // 程序启动时初始设置屏幕缩放比
