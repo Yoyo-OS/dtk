@@ -606,7 +606,7 @@ QVariant QDeepinTheme::themeHint(QPlatformTheme::ThemeHint hint) const
     default:
         break;
     }
-    QVariant m_hint = m_hints->hint(hintType);
+    QVariant m_hint = m_hints->hint(hint);
     if (m_hint.isValid()) {
         return m_hint;
     } else {
